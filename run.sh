@@ -1,5 +1,4 @@
 #!/bin/sh
-
 docker run -d \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -p 57575:57575 -p 3000:3000 \
