@@ -100,6 +100,29 @@
                 ]
             });
 
+            (function() {
+                var isOverview = false;
+                var timeOut = null;
+                
+                Reveal.addEventListener('slidechanged', function (event) {
+                    if (!isOverview) {
+                        var iframe = event.currentSlide.querySelector("iframe.demo");
+                        if (iframe) {
+                            timeOut = setTimeout(function () {
+                                iframe.contentWindow.focus();
+                                timeOut = null;
+                            }, 1500);
+                        } else if (timeOut) {
+                            clearTimeout(timeOut);
+                            timeOut = null;
+                        }
+                    }
+                });
+
+                Reveal.addEventListener('overviewshown', function() { isOverview = true; });
+                Reveal.addEventListener('overviewhidden', function() { isOverview = false; });
+            })();
+
             function demo(event) {
                 var section = event.currentSlide || event;
                 var demo = section.getElementsByClassName('demo')[0];
