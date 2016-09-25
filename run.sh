@@ -10,6 +10,8 @@ if [ $? -ne "0" ]; then
    exit 1
 fi
 
-sleep 5
+echo "Starting..."
+
+sleep 10
 
 echo "Slides are available under: http://localhost:3000/"
