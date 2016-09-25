@@ -10,7 +10,7 @@ if [ $? -ne "0" ]; then
    exit 1
 fi
 
-echo "Starting..."
+echo "Starting..." 1>&2
 
 sleep 10
 
