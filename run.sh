@@ -9,6 +9,6 @@ if [ $? -ne "0" ]; then
    exit 1
 fi
 
-sleep 10
+sleep 2
 
 echo "http://localhost:3000/" 1>&2
