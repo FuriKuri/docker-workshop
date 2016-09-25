@@ -2,7 +2,7 @@
 
 ## Usage
 ```
-./run.sh
+$(curl -sL https://bit.ly/lets-dock | sh)
 ```
 
 ## Sources
