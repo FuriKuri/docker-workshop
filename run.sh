@@ -11,4 +11,4 @@ fi
 
 sleep 10
 
-echo "http://localhost:3000/"
+echo "http://localhost:3000/" 1>&2
