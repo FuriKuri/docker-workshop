@@ -100,6 +100,17 @@
                 ]
             });
 
+            function demo(event) {
+                var section = event.currentSlide || event;
+                var demo = section.getElementsByClassName('demo')[0];
+                if (demo) {
+                    demo.src = 'http://localhost:57575';
+                }
+            }
+
+            Reveal.addEventListener( 'slidechanged', demo );
+            Reveal.addEventListener( 'ready', demo );
+
         </script>
 
     </body>
