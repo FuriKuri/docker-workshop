@@ -42,7 +42,6 @@ RUN cp /opt/docker-presentations/modules/welcome-module-dockercon2016/images/tit
 
 COPY profile /root/.profile
 COPY presentation/index.html /opt/revealjs/index.html
-COPY presentation/data /opt/revealjs/data
 COPY docker_start.sh /opt/revealjs/start.sh
 COPY butterfly.sass /opt/butterfly/butterfly/sass/main.sass
 RUN sassc /opt/butterfly/butterfly/sass/main.sass > /opt/butterfly/butterfly/static/main.css
