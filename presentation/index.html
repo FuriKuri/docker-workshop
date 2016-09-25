@@ -100,7 +100,7 @@
                 ]
             });
 
-            function demo(event) {
+            function demoSlide(event) {
                 var section = event.currentSlide || event;
                 var demo = section.getElementsByClassName('demo')[0];
                 if (demo) {
@@ -108,8 +108,8 @@
                 }
             }
 
-            Reveal.addEventListener('slidechanged', demo);
-            Reveal.addEventListener('ready', demo);
+            Reveal.addEventListener('slidechanged', demoSlide);
+            Reveal.addEventListener('ready', demoSlide);
 
         </script>
 
