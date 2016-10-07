@@ -152,6 +152,12 @@
                 </section>
 
                 <section data-background="#1AAAF8" class="blue_bg">
+                    <div style="background-color:#254356; padding: 10px;">
+                        <iframe class="demo" style="height: 586px; width: 100%; max-width: 100%; max-height: 100%; margin-left: 0px; padding: 10px; overflow:hidden;"></iframe>
+                    </div>
+                </section>
+
+                <section data-background="#1AAAF8" class="blue_bg">
                     <h2>Next steps</h2>   
                     <ul>
                         <li>Kubernetes</li>
@@ -234,10 +240,13 @@
 
             function demoSlide(event) {
                 var section = event.currentSlide || event;
-                var demo = section.getElementsByClassName('demo')[0];
-                if (demo && !demo.src) {
-                    demo.src = 'http://localhost:57575';
-                }
+                var elements = section.getElementsByClassName('demo');
+                for (var i = 0; i < elements.length; i++) {
+                    var demo = elements[i];
+                    if (demo && !demo.src) {
+                        demo.src = 'http://localhost:57575';
+                    }
+                };
             }
 
             Reveal.addEventListener('slidechanged', demoSlide);
