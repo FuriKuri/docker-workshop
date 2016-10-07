@@ -144,7 +144,7 @@
 
                 <section data-background="#1AAAF8" class="blue_bg">
                     <div style="background-color:#254356; padding: 10px;">
-                        <iframe class="demo" src="http://localhost:57575/" style="height: 586px; width: 100%; max-width: 100%; max-height: 100%; margin-left: 0px; padding: 10px; overflow:hidden;"></iframe>
+                        <iframe class="demo" style="height: 586px; width: 100%; max-width: 100%; max-height: 100%; margin-left: 0px; padding: 10px; overflow:hidden;"></iframe>
                     </div>
                 </section>
 
@@ -168,7 +168,7 @@
 
                 <section data-background="#445d6e" class="blue_bg">
                     <h2>The Docker Survey 2016</h2>
-                    <div style="background-color:#ffffff; padding: 10px;">
+                    <div style="background-color:#ffffff; text-align: center">
                         <img src="images/survey1.png" height="500">
                     </div>
                     <span class="source">source: <a href="https://www.docker.com">docker.com</a></span>
@@ -176,7 +176,7 @@
 
                 <section data-background="#445d6e" class="blue_bg">
                     <h2>The Docker Survey 2016</h2>
-                    <div style="background-color:#ffffff; padding: 10px;">
+                    <div style="background-color:#ffffff; text-align: center">
                         <img src="images/survey2.png" height="500">
                     </div>
                     <span class="source">source: <a href="https://www.docker.com">docker.com</a></span>
@@ -184,7 +184,7 @@
 
                 <section data-background="#445d6e" class="blue_bg">
                     <h2>The Docker Survey 2016</h2>
-                    <div style="background-color:#ffffff; padding: 10px;">
+                    <div style="background-color:#ffffff; text-align: center">
                         <img src="images/survey3.png" height="500">
                     </div>
                     <span class="source">source: <a href="https://www.docker.com">docker.com</a></span>
@@ -192,7 +192,7 @@
 
                 <section data-background="#445d6e" class="blue_bg">
                     <h2>The Docker Survey 2016</h2>
-                    <div style="background-color:#ffffff; padding: 10px;">
+                    <div style="background-color:#ffffff; text-align: center">
                         <img src="images/survey4.png" height="500">
                     </div>
                     <span class="source">source: <a href="https://www.docker.com">docker.com</a></span>
@@ -235,7 +235,7 @@
             function demoSlide(event) {
                 var section = event.currentSlide || event;
                 var demo = section.getElementsByClassName('demo')[0];
-                if (demo) {
+                if (demo && !demo.src) {
                     demo.src = 'http://localhost:57575';
                 }
             }
