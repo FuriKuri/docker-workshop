@@ -290,9 +290,65 @@ ENTRYPOINT usr/bin/mongod</pre>
 $ docker run my_mongo</pre>
                 </section>  
 
+                <section data-background="#1AAAF8" class="blue_bg">
+                    <h2>The build context</h2>   
+                    <ul>
+                        <li>Dockerfile + build context</li>
+                        <li>
+                            Build context = set of local files or directories
+                            <ul>
+                                <li>files + dir => tarball => Docker daemon</li>
+                                <li>Can be referenced with ADD and COPY</li>
+                                <li>.dockerignore</li>   
+                            </ul>
+                        </li>
+                        <li>Dockerfile can also start with http or https</li>
+                        <li>
+                            Build context can also be a git repository
+                            <ul>
+                                <li>
+                                    github.com/, _git@, _git://
+                                </li>
+                            </ul>
+                        </li>
+                        <li>docker build - < context.tar.gz</li>
+                    </ul>
+                </section>
 
+                <section data-background="#1AAAF8" class="blue_bg">
+                    <h2>Caching</h2>   
+                    <ul>
+                        <li>Each layer will be cached</li>
+                        <li>
+                            Used for an instruction if
+                            <ul>
+                                <li>previous instruction was found in cache</li>
+                                <li>there is a layer in the cache with same instruction and parent layer</li> 
+                            </ul>
+                        </li>
+                        <li>ADD and COPY invalidated if checksum or metadata has changed</li>
+                        <li>docker build --no-cache ...</li>
+                    </ul>
+                </section>
 
+                <section data-background="#1AAAF8" class="blue_bg">
+                    <h2>Common Docker commands</h2>
+                    <pre>
+# Create and start container 
+$ docker run -p 8080:8080 -d -v /host/dir:/container/dir --name my_container image-name
 
+# Build image
+$ docker build -f /path/to/Dockerfile -t my_image /path/to/build-context
+
+# Managing container
+$ docker stop/start/restart/kill &#x3C;container_name || container_id&#x3E;
+
+# Container information
+$ docker logs/inspect/history &#x3C;container_name || container_id&#x3E;
+
+# Docker information
+$ docker ps/top/images</pre>
+                </section>
 
                 <section data-background="#1AAAF8" class="blue_bg">
                     <div style="background-color:#254356; padding: 10px;">
@@ -301,6 +357,44 @@ $ docker run my_mongo</pre>
                 </section>
 
 
+                <section data-background="#1AAAF8" class="blue_bg">
+                    <h2>Docker registry</h2>
+                    <pre>$ docker pull ubuntu</pre>
+                    <pre>$ docker pull registry-1.docker.io/distribution/registry:2.1</pre>
+                    <ul>
+                        <li>storage and content delivery system</li>
+                        <li>available in different tagged versions</li>
+                        <li><a href="https://hub.docker.com/explore/">Docker Hub</a></li>
+                        <li><a href="https://store.docker.com/">Docker Store</a></li>
+                    </ul>
+                </section>
+
+                <section data-background="#1AAAF8" class="blue_bg">
+                    <h2>Docker volumes</h2>
+                    <ul>
+                        <li>outside the UFS</li>
+                        <li>normal directories on the host that are bind mounted</li>
+                    </ul>
+                    <pre>
+$ docker run -it --name container-test -h CONTAINER -v /data debian /bin/bash
+$ docker inspect -f {{.Volumes}} container-test
+
+$ docker run -it --name container-test -h CONTAINER -v /home/theo/data:/data debian /bin/bash</pre>
+                </section>
+
+                <section data-background="#1AAAF8" class="blue_bg">
+                    <h2>Data volume containers</h2>
+                    <ul>
+                        <li>data share between containers</li>
+                        <li>use from non-persistent containers</li>
+                        <li>remove containers db1 and db2 => the volumes will not be deleted</li>
+                    </ul>
+                    <pre>
+$ docker create -v /dbdata --name dbstore training/postgres /bin/true
+$ docker run -d --volumes-from dbstore --name db1 training/postgres
+$ docker run -d --volumes-from dbstore --name db2 training/postgres
+$ docker run -d --volumes-from db1     --name db3 training/postgres</pre>
+                </section>
 
                 <section data-background="#1AAAF8" class="blue_bg">
                     <h2>Docker network</h2>   
@@ -358,6 +452,29 @@ $ docker run my_mongo</pre>
                             </ul>
                         </li>
                     </ul>
+                </section>
+
+                <section data-background="#1AAAF8" class="blue_bg">
+                    <h2>Docker service</h2> 
+                    <ul>
+                        <li>part of Docker Swarm</li>
+                    </ul>  
+                    <pre>
+# Create service
+$ docker service create --name elasticsearch elasticsearch
+
+# List all service
+$ docker service ls
+
+# List all tasks of a service
+$ docker service ps elasticsearch
+
+# Scale up/down
+$ docker service update elasticsearch --replicas=10
+
+# Remove service
+$ docker service rm elasticsearch
+                    </pre>
                 </section>
 
                 <section data-background="images/docker-animation.gif" class="blue_bg">
